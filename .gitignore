@@ -4,3 +4,5 @@ out/*.joblib
 .ipynb_checkpoints
 dados/balancos/
 dados/cotacoes/
+
+__pycache__
