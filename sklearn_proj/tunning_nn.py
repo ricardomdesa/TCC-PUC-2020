@@ -11,7 +11,7 @@ from base_func import split_dados, avaliar, read_df
 def definir_modelos_ml() -> dict:
     return {
         "NN_base": MLPClassifier(random_state=42, max_iter=100),
-        "KNN_tunned": MLPClassifier(solver="sgd", random_state= 2, hidden_layer_sizes= 5, alpha= 0.1, activation= "relu"),
+        "KNN_tunned": MLPClassifier(solver="sgd", random_state=2, hidden_layer_sizes=5, alpha=0.1, activation="relu"),
         # "KNN_tunned_grid": RandomForestClassifier(random_state=42, n_estimators= 200, min_samples_split= 12, min_samples_leaf= 3, max_features= 'sqrt', max_depth= 80, bootstrap= True),
 
     }
@@ -41,15 +41,15 @@ def fit_tunning_rand_search_nn(X_treino, y_treino):
     solver = ['sgd']
     # max_iter = [2000]
     alpha = 10.0 ** -np.arange(1, 7)
-    hidden_layer_sizes = [5]
+    hidden_layer_sizes = [3, 5, 8]
 
     # Create the random grid
     random_grid = {'activation': activation,
                    'solver': solver,
                    # 'max_iter': max_iter,
-                   'alpha': alpha,
+                   # 'alpha': alpha,
                    'random_state': random_state,
-                   # 'learning_rate': learning_rate,
+                   'learning_rate': learning_rate,
                    'hidden_layer_sizes': hidden_layer_sizes,
                    }
 
@@ -111,6 +111,7 @@ def run_nn_tunning(df):
 
 
 if __name__ == '__main__':
-    df = read_df(scaled=False)
-    rodar_imprimir_modelos_ml(df)
-    # run_nn_tunning(df)
+    df = read_df(scaled=True)
+    print(df.info())
+    # rodar_imprimir_modelos_ml(df)
+    run_nn_tunning(df)

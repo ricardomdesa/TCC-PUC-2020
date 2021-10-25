@@ -29,18 +29,17 @@ def rodar_imprimir_modelos_ml(modelos, X_treino, X_teste, y_treino, y_teste):
 def fit_tunning_rand_search_gradient(X_treino, y_treino):
     print("Tunning randomized search Gradient Boost")
     # Number of trees in random forest
-    n_estimators = [int(x) for x in np.linspace(start=700, stop=1500, num=10)]
+    n_estimators = [800, 1500]
     # Learning rate default = 0.1
-    learning_rate = [0.01, 0.025, 0.05, 0.075, 0.1, 0.15, 0.2]
+    learning_rate = [0.01, 0.025, 0.05, 0.1]
     # Number of features to consider at every split
     max_features = ['auto', 'sqrt']
     # Maximum number of levels in tree
-    max_depth = [int(x) for x in np.linspace(10, 110, num=11)]
-    max_depth.append(3)
+    max_depth = [10, 5, 3]
     # Minimum number of samples required to split a node
     min_samples_split = [2, 5, 10]
     # Minimum number of samples required at each leaf node
-    min_samples_leaf = [1, 2, 4]
+    min_samples_leaf = [2, 4]
     # Criterion
     criterion = ["friedman_mse", "squared_error"]
 
@@ -48,9 +47,9 @@ def fit_tunning_rand_search_gradient(X_treino, y_treino):
     random_grid = {'n_estimators': n_estimators,
                    'learning_rate': learning_rate,
                    'max_features': max_features,
-                   'max_depth': max_depth,
+                   # 'max_depth': max_depth,
                    'min_samples_split': min_samples_split,
-                   'min_samples_leaf': min_samples_leaf,
+                   # 'min_samples_leaf': min_samples_leaf,
                    'criterion': criterion}
 
     print(random_grid)
@@ -60,10 +59,12 @@ def fit_tunning_rand_search_gradient(X_treino, y_treino):
                                    n_iter=100,
                                    cv=3,
                                    verbose=2,
+                                   scoring="recall_macro",
                                    random_state=42,
                                    n_jobs=-1)
 
     # best params {'n_estimators': 1411, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_features': 'auto', 'max_depth': 110, 'learning_rate': 0.025, 'criterion': 'squared_error'}
+    # {'n_estimators': 800, 'min_samples_split': 2, 'max_features': 'sqrt', 'learning_rate': 0.01,'criterion': 'squared_error'}
     # precision 1 - 0.53 0.55 0.54 - score 0.5454
 
     # Fit the random search model
@@ -96,8 +97,8 @@ def run_gradient_boost_tunning(df):
     # split database train and test
     X_treino, X_teste, y_treino, y_teste = split_dados(df)
 
-    # resultado_grid = fit_tunning_rand_search_gradient(X_treino, y_treino)
-    resultado_grid = fit_tunning_grid_gradient(X_treino, y_treino)
+    resultado_grid = fit_tunning_rand_search_gradient(X_treino, y_treino)
+    # resultado_grid = fit_tunning_grid_gradient(X_treino, y_treino)
 
     print("Ajuste Gradient feito")
 
@@ -111,5 +112,5 @@ def run_gradient_boost_tunning(df):
 
 
 if __name__ == '__main__':
-    df = read_df(scaled=False)
+    df = read_df(scaled=True)
     run_gradient_boost_tunning(df)
