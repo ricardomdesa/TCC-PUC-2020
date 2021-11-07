@@ -1,0 +1,8 @@
+arq_ref/
+out/*.joblib
+.idea
+.ipynb_checkpoints
+dados/balancos/
+dados/cotacoes/
+
+__pycache__
