@@ -47,5 +47,5 @@ def avaliar(y_teste, previsoes, nome_modelo):
     print(report)
     cf_matrix = pd.DataFrame(confusion_matrix(y_teste, previsoes), index=["Vender", "Comprar"], columns=["Vender", "Comprar"])
     sns.heatmap(cf_matrix, annot=True, cmap="Blues", fmt=',')
-    # plt.show()
+    plt.show()
     print("#" * 50)

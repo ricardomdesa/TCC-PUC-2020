@@ -38,13 +38,9 @@ def fit_tunning_rand_search_ada(X_treino, y_treino):
                                    param_distributions=param,
                                    cv=3,
                                    verbose=2,
-                                   # scoring="balanced_accuracy",
-                                   scoring="accuracy",
+                                   scoring="recall",
                                    random_state=42,
                                    n_jobs=-1)
-
-    # best params {'n_estimators': 80, 'learning_rate': 0.1, 'algorithm': 'SAMME.R'}
-    # precision 1 - 0.59 0.63 0.61 - score 0.5704
 
     # Fit the random search model
     return rf_random.fit(X_treino, y_treino)
@@ -74,5 +70,5 @@ def run_ada_boost_tunning(df):
 
 
 if __name__ == '__main__':
-    df = read_df(scaled=True)
+    df = read_df(scaled=False)
     run_ada_boost_tunning(df)
