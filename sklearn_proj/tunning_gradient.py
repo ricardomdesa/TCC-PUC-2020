@@ -40,15 +40,10 @@ def fit_tunning_rand_search_gradient(X_treino, y_treino):
                                    param_distributions=params,
                                    # n_iter=100,
                                    cv=3,
-                                   verbose=2,
-                                   # scoring="balanced_accuracy",
+                                   verbose=0,
                                    scoring="recall",
                                    random_state=42,
                                    n_jobs=-1)
-
-    # best params {'n_estimators': 1411, 'min_samples_split': 2, 'min_samples_leaf': 2, 'max_features': 'auto', 'max_depth': 110, 'learning_rate': 0.025, 'criterion': 'squared_error'}
-    # {'n_estimators': 1000, 'min_samples_split': 10, 'max_features': 'auto', 'learning_rate': 0.01, 'criterion': 'squared_error'}
-    # precision 1 - 0.57 0.68 0.62 - score 0.5609
 
     # Fit the random search model
     return rf_random.fit(X_treino, y_treino)
