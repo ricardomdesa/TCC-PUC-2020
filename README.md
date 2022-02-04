@@ -26,5 +26,7 @@ cd notebooks/
 - **final_predict_test/6_teste_resultados.ipynb**: Realiza teste com novos dados utilizando o modelo ML.
 
 Os dados de entrada necessarios para o primeiro notebook, de coleta de dados, encontram-se na pasta **dados/balancos** e **dados/cotacoes**.
+
 Os arquivos ".joblib" sao arquivos gerados pelo notebook a fim de guardar os DataFrames com os dados de excel ja carregados para agilizar o processo em caso de uma nova execucao. 
+
 No final de cada notebook tambem é gerado arquivos ".joblib" na pasta **out** para serem lidos no proximo notebook.
