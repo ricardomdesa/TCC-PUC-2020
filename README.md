@@ -1,4 +1,4 @@
-## MODELO MACHINE LEARNING PARA ANÁLISE FUNDAMENTALISTA DE EMPRESAS LISTADAS NA BOLSA DE VALORES BRASILEIRA
+## CLASSIFICAÇÃO E PREDIÇÃO DE RECOMENDAÇÃO DE EMPRESAS DA BOLSA DE VALORES BASEADO EM ANÁLISE FUNDAMENTALISTA
 
 Trabalho de Conclusão apresentado ao Curso de Especialização em Ciência de Dados e Big Data como requisito parcial à obtenção do título de especialista.
 
